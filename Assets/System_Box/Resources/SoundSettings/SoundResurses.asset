@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d1f374e6976fe42afbcf08108d256c, type: 3}
+  m_Name: SoundResurses
+  m_EditorClassIdentifier: 
+  SavedItems:
+  - {fileID: 11400000, guid: 8b7e1392ec91fac4a8adb10abbcff145, type: 2}
+  - {fileID: 11400000, guid: 74856b4e24f193946bab90fe4018166e, type: 2}
+  - {fileID: 11400000, guid: caaa101f97a2d4043bacfece910745de, type: 2}
+  - {fileID: 11400000, guid: f7a670ca5b5d1a34e9212485cec6c082, type: 2}
+  - {fileID: 11400000, guid: a551020cf127ead49ba42b9d84bebf43, type: 2}
+  - {fileID: 11400000, guid: 3d34bb0aba4c9204ba3dcb04363e8dab, type: 2}
+  - {fileID: 11400000, guid: 88d042029d2ee0746b0cf140f517e677, type: 2}
+  - {fileID: 11400000, guid: 7ed7fd1c5b813d543b66339997c0633a, type: 2}
+  - {fileID: 11400000, guid: 3c2d14e806e8cdd42a2ba44e43b01c75, type: 2}
+  SavedItems_Paths:
+  - Assets/Resources/SoundIpems/bow_shot.asset
+  - Assets/Resources/SoundIpems/Crash_daimd.asset
+  - Assets/Resources/SoundIpems/Crash_Stone.asset
+  - Assets/Resources/SoundIpems/Crash_Wood.asset
+  - Assets/Resources/SoundIpems/Explosion_Big.asset
+  - Assets/Resources/SoundIpems/Monsters.asset
+  - Assets/Resources/SoundIpems/Tik.asset
+  - Assets/Resources/SoundIpems/TikTik.asset
+  - Assets/Resources/SoundIpems/UpGread_Home.asset

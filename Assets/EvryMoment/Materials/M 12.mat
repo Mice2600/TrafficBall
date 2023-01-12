@@ -7,13 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M 1
-  m_Shader: {fileID: 4800000, guid: 5729a3b9802f4aa44bd1457e501aa890, type: 3}
+  m_Name: M 12
+  m_Shader: {fileID: 4800000, guid: 16a537bf0e18d1943a62dce0b40e15d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - COLR_1_2
+  - _GLOSSYREFLECTIONS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -98,9 +99,10 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Denger: 3.33
-    - _DengerForward: 7
-    - _DengerLight: 3
+    - _Danger: 1.45
+    - _Denger: 1.49
+    - _DengerForward: 4.2
+    - _DengerLight: 1.83
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectionPitch: 148.2
@@ -117,6 +119,7 @@ Material:
     - _Intensity: 1
     - _LightmapPower: 2.26
     - _Metallic: 0.557
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: -5
@@ -128,6 +131,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _UVSec: 0
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
@@ -136,7 +140,7 @@ Material:
     - _BackTopColor: {r: 0, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 0.52991456, b: 0, a: 1}
     - _BottomColor: {r: 1, g: 0.020871002, b: 0, a: 0.7176471}
-    - _Color: {r: 0.6975236, g: 0.19339621, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.8190596, b: 1, a: 1}
     - _Color1: {r: 0.5471698, g: 0.055086877, b: 0, a: 0.3137255}
     - _Color2: {r: 0.88122797, g: 1, b: 0, a: 0}
     - _Direction: {r: 0.40602645, g: -0.8498927, b: 0.3358943, a: 0}
@@ -144,8 +148,8 @@ Material:
     - _FrontBottomColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _FrontTopColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _GradientColor: {r: 1, g: 0, b: 0, a: 1}
-    - _GradientColorOne: {r: 1, g: 0, b: 0.57254887, a: 1}
-    - _GradientColorTwo: {r: 1, g: 0.089898154, b: 0, a: 1}
+    - _GradientColorOne: {r: 0.11224561, g: 0.38679248, b: 0, a: 1}
+    - _GradientColorTwo: {r: 0, g: 1, b: 0.08059716, a: 1}
     - _LeftBottomColor: {r: 1, g: 0.020871002, b: 0, a: 0.7176471}
     - _LeftTopColor: {r: 0, g: 1, b: 0, a: 0}
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}

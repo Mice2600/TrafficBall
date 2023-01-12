@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using SystemBox;
 using SystemBox.Simpls;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlaceController : MonoBehaviour

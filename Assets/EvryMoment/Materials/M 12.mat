@@ -99,8 +99,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Danger: 1.45
-    - _Denger: 1.49
+    - _Danger: 1.3
+    - _Denger: 1.3
     - _DengerForward: 4.2
     - _DengerLight: 1.83
     - _DetailAlbedoMapScale: 1
@@ -112,13 +112,13 @@ Material:
     - _EnvironmentReflections: 1
     - _Exponent: 1.68
     - _GlossMapScale: 0
-    - _Glossiness: 0
+    - _Glossiness: 0.46
     - _GlossyReflections: 0
     - _GradientHeight: 9.79
     - _GradientYStartPos: 0.57
     - _Intensity: 1
     - _LightmapPower: 2.26
-    - _Metallic: 0.557
+    - _Metallic: 0.191
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -140,7 +140,7 @@ Material:
     - _BackTopColor: {r: 0, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 0.52991456, b: 0, a: 1}
     - _BottomColor: {r: 1, g: 0.020871002, b: 0, a: 0.7176471}
-    - _Color: {r: 0, g: 0.8190596, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.6603774, b: 0.5014896, a: 1}
     - _Color1: {r: 0.5471698, g: 0.055086877, b: 0, a: 0.3137255}
     - _Color2: {r: 0.88122797, g: 1, b: 0, a: 0}
     - _Direction: {r: 0.40602645, g: -0.8498927, b: 0.3358943, a: 0}
@@ -148,8 +148,8 @@ Material:
     - _FrontBottomColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _FrontTopColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _GradientColor: {r: 1, g: 0, b: 0, a: 1}
-    - _GradientColorOne: {r: 0.11224561, g: 0.38679248, b: 0, a: 1}
-    - _GradientColorTwo: {r: 0, g: 1, b: 0.08059716, a: 1}
+    - _GradientColorOne: {r: 0, g: 0.53054047, b: 0.5943396, a: 1}
+    - _GradientColorTwo: {r: 0.2216981, g: 0.6319216, b: 1, a: 1}
     - _LeftBottomColor: {r: 1, g: 0.020871002, b: 0, a: 0.7176471}
     - _LeftTopColor: {r: 0, g: 1, b: 0, a: 0}
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}

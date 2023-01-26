@@ -15,29 +15,10 @@ public static class conciliate
     }
     public static bool TrayMarge(List<Content> contents, out Content Resultat) 
     {
-        Resultat = new Content { Number = 0 };
+        Resultat = new Content { AlgaritmNumber = 0 };
         if (!CanMarge(contents))return false;
-        Resultat = new Content { Number = contents[0] };
-        for (int i = 0; i < contents.Count - 1; i++)
-            Resultat *= 2;
+        Resultat = new Content { AlgaritmNumber = contents[0] + contents.Count - 1 };
         return true;
-    }
-    public static int NumberToAlgaritim(int content)
-    {
-        int AlgaritimNumber = 0;
-        while (true) 
-        {
-            if (content <= 0 || content % 2 > 0) break;
-            content = content / 2;
-            AlgaritimNumber++;
-        }
-        return AlgaritimNumber;
-    }
-    public static int AlgaritimToNumber(int Algaritm) 
-    {
-        int Number = 1;
-        for (int i = 0; i < Algaritm; i++)Number *= 2; 
-        return Number;
     }
     private static Vector3 Bezier(Vector3[] points, float lerp)
     {

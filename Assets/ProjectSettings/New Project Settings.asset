@@ -21,15 +21,14 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Balls:
-  - {fileID: 1445961647516666742, guid: 63c62cefce7820748aefe768b84fd8e2, type: 3}
-  - {fileID: 6797075986699508331, guid: 59500b19c5da0f64f81442c68df961a4, type: 3}
-  - {fileID: 4364524005688964063, guid: 1eddbd99a1db3544493c3a303390393b, type: 3}
-  - {fileID: 7895231743810593316, guid: 97afdf09b04144744aa85689e7511bcb, type: 3}
-  - {fileID: 833615923798645149, guid: 4242913519ea38d4a896205e00fdb5f7, type: 3}
-  - {fileID: 154992864361076807, guid: 47182858780247c4ebcad2dd3b00196b, type: 3}
-  - {fileID: 2002439514150935376, guid: 1e4d972527e10ec4eba4cee7d777bd57, type: 3}
-  - {fileID: 3158765762919326905, guid: b33f39b9c5683d14ca2de84381dc4a6e, type: 3}
-  - {fileID: 8882248430937388979, guid: 78fc233d7a3310c4599adc66aee1c661, type: 3}
-  - {fileID: 4854201125962234355, guid: 7a6411bb7d4cb284e8a3459b0851c249, type: 3}
-  - {fileID: 2484243966932909858, guid: 869bd248af2c75b469b959c84723f219, type: 3}
+  BallMaterials:
+  - {fileID: 2100000, guid: b377f41dab218014cba1b20ae89f1bfd, type: 2}
+  - {fileID: 2100000, guid: 2601342347d6b234cb72c3da813be3ec, type: 2}
+  - {fileID: 2100000, guid: 2ff754fc8ee4f0142add7f64e1a38d1d, type: 2}
+  - {fileID: 2100000, guid: e82a12a8d71267347a54a0fa0d64e01f, type: 2}
+  - {fileID: 2100000, guid: afef605b0ac7bd54fa0eb7a0b9f974b7, type: 2}
+  - {fileID: 2100000, guid: aa656c5b6b191ad4fb36d470beaa06f5, type: 2}
+  - {fileID: 2100000, guid: abdda3c395cc3184daf8f40799dd37e7, type: 2}
+  BallPrefab: {fileID: 1445961647516666742, guid: 63c62cefce7820748aefe768b84fd8e2, type: 3}
+  BrokenBoll: {fileID: 3302785581640214476, guid: 2eb8a4037b3aa3140a56cf97c19189f1, type: 3}
+  MargeBallPlayPrefab: {fileID: 7972225853873071556, guid: 6025f129429190942864e0c280c1410e, type: 3}

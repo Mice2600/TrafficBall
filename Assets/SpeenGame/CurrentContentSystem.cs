@@ -1,18 +1,18 @@
 using PathCreation;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using SystemBox;
 using UnityEngine;
 
 public class CurrentContentSystem : MonoBehaviour
 {
     public ContentObject ContentObject;
-    private NextContentSystem NextContentSystem => _NextContentSystem ??= FindObjectOfType<NextContentSystem>();
+    public NextContentSystem NextContentSystem => _NextContentSystem ??= FindObjectOfType<NextContentSystem>();
     private NextContentSystem _NextContentSystem;
-    private PlaceController PlaceController => _PlaceController ??= FindObjectOfType<PlaceController>();
+    public PlaceController PlaceController => _PlaceController ??= FindObjectOfType<PlaceController>();
     private PlaceController _PlaceController;
+
+    public System.Action<PathBall> OnShot;
 
     [Required]
     public PathCreator WayPath;
@@ -30,13 +30,18 @@ public class CurrentContentSystem : MonoBehaviour
     {
         if (ContentObject == null) return;
         MargeBall En = ContentObject.gameObject.AddComponent<MargeBall>();
+        OnShot?.Invoke(ContentObject.GetComponent<PathBall>());
         En.PlaceController = PlaceController;
         En.WayPath = WayPath;
         En.OnFinsh += Onfinsh;
         ContentObject = null;
         void Onfinsh(bool a) 
         {
-            if (!a) return;
+            if (!a) 
+            {
+                FindObjectOfType<GameOverSystem>().Play();
+                return;
+            }
             CreatNew(NextContentSystem.ContentObject.Content);
             NextContentSystem.CreatNew();
         }
@@ -44,7 +49,7 @@ public class CurrentContentSystem : MonoBehaviour
     public void Replace() 
     {
         if (this.ContentObject == null) return;
-
+        AudioPlayer.PlayAudio("Relode");
         Content A = this.ContentObject.Content;
         Content B = NextContentSystem.ContentObject.Content;
         NextContentSystem.CreatNew(A);
@@ -54,12 +59,25 @@ public class CurrentContentSystem : MonoBehaviour
     public void CreatNew(Content content) 
     {
         if (this.ContentObject != null) Destroy(this.ContentObject.gameObject);
-        GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.GetNuberBallPrefab(content));
-        this.ContentObject = InN.GetComponent<ContentObject>();
-        this.ContentObject.Content = content;
+        GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.BallPrefab);
+        InN.GetComponent<Ball>().SphereRenderer.material = new Material(ProjectSettings.ProjectSettings.Mine.GetAlgaritmBallMaterial(content));
+        InN.GetComponent<ContentObject>().Content = content;
         InN.transform.position = transform.position;
-    }
+        StartCoroutine(MoweToMee());
 
+        IEnumerator MoweToMee()
+        {
+            InN.transform.position = WayPath.path.GetPointAtTime(0);
+            while (true)
+            {
+                InN.transform.position = Vector3.MoveTowards(InN.transform.position, transform.position, Time.deltaTime * 30f);
+                if (InN.transform.position == transform.position) break;
+                yield return null;
+            }
+            this.ContentObject = InN.GetComponent<ContentObject>();
+        }
+
+    }
 }
 public class MargeBall : MonoBehaviour 
 {
@@ -70,16 +88,19 @@ public class MargeBall : MonoBehaviour
     private bool IsDone;
 
     public System.Action<bool> OnFinsh;
+    private void Start()
+    {
+        PathTime = WayPath.path.GetClosestTimeOnPath(transform.position);
+    }
 
-    
     private void Update()
     {
         if (IsDone) return;
-        Speed += Time.deltaTime * 10f;
-        PathTime += Speed * Time.deltaTime;
-        if (PathTime > 1f) 
+        Speed += TimeControll.deltaTime * 20f;
+        PathTime += Speed * TimeControll.deltaTime;
+        if (PathTime >= 0.97f) 
         {
-            PathTime = 1f;
+            PathTime = 0.97f;
             IsDone = true;
             onFinish();
         }
@@ -87,8 +108,8 @@ public class MargeBall : MonoBehaviour
     }
     private void onFinish() 
     {
-        Destroy(this);
         if (!PlaceController.TryMargeNewContent(gameObject)) { OnFinsh?.Invoke(false); return;  }
+        Destroy(this);
         OnFinsh?.Invoke(true);
     }
 

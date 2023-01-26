@@ -25,7 +25,10 @@ public class NextContentSystem : MonoBehaviour
     public void CreatNew(Content NContent) 
     {
         if(this.ContentObject != null) Destroy(this.ContentObject.gameObject);
-        GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.GetNuberBallPrefab(NContent));
+
+        GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.BallPrefab);
+        InN.GetComponent<Ball>().SphereRenderer.material = new Material(ProjectSettings.ProjectSettings.Mine.GetAlgaritmBallMaterial(NContent));
+
         this.ContentObject = InN.GetComponent<ContentObject>();
         this.ContentObject.Content = NContent;
         InN.transform.position = transform.position;
@@ -40,7 +43,7 @@ public class NextContentSystem : MonoBehaviour
         for (int i = 0; i < PlaceController.PathBalls.Count; i++)
             AlgaritmContents.AddIfDirty(PlaceController.PathBalls[i].Content.AlgaritmNumber);
 
-        if (AlgaritmContents.IsEnpty()) return new Content {  Number = conciliate.AlgaritimToNumber(Random.Range(1, 3)) };
+        if (AlgaritmContents.IsEnpty()) return new Content {  AlgaritmNumber = Random.Range(1, 3) };
         Min = AlgaritmContents[0];
         Max = AlgaritmContents[0];
         for (int i = 0; i < AlgaritmContents.Count; i++)
@@ -48,9 +51,9 @@ public class NextContentSystem : MonoBehaviour
             if (Min > AlgaritmContents[i]) Min = AlgaritmContents[i];
             if (Max < AlgaritmContents[i]) Max = AlgaritmContents[i];
         }
-        int newContent = Random.Range((Max - 4) - 4, Max - 4);
+        int newContent = Random.Range(Min, Max - 1);
         if (newContent > Max) newContent = Max;
         if (newContent < 1) newContent = Random.Range(1, 4);
-        return new Content { Number = conciliate.AlgaritimToNumber(newContent) };
+        return new Content { AlgaritmNumber = newContent };
     }
 }

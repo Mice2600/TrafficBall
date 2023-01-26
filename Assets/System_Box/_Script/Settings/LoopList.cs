@@ -731,7 +731,7 @@ namespace SystemBox
         {
             try
             {
-                return NList[NList.IndexOf(item) + 1];
+                return this[NList.IndexOf(item) + 1];
             }
             catch (System.Exception XX) { throw Tools.ExceptionThrow(XX, 2); }
         }
@@ -744,7 +744,7 @@ namespace SystemBox
         {
             try
             {
-                return NList[NList.IndexOf(item) - 1];
+                return this[NList.IndexOf(item) - 1];
             }
             catch (System.Exception XX) { throw Tools.ExceptionThrow(XX, 2); }
         }

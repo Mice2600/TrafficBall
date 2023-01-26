@@ -8,13 +8,13 @@ namespace ProjectSettings
 {
     public partial class ProjectSettings 
     {
-        public GameObject GetAlgaritmBallPrefab(int Algaritm) => new LoopList<GameObject>(Balls)[Algaritm];
-        public GameObject GetNuberBallPrefab(int Number) => GetAlgaritmBallPrefab(conciliate.NumberToAlgaritim(Number));
-        [SerializeField]private List<GameObject> Balls;
+        public Material GetAlgaritmBallMaterial(int Algaritm) => new LoopList<Material>(BallMaterials)[Algaritm];
+        [SerializeField]private List<Material> BallMaterials;
+        public GameObject BallPrefab;
     }
 }
 
 public class Ball : ContentObject
 {
-        
+    public Renderer SphereRenderer;
 }

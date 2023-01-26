@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcd8fdb1a75b64c95bf455d90070bd, type: 3}
+  m_Name: Crash
+  m_EditorClassIdentifier: 
+  Description: Assets/Resources/SoundIpems/Crash.asset
+  Audio:
+    Audio: {fileID: 8300000, guid: c72527ab1403a234d8f2c03133e0ba0d, type: 3}
+    Volume: 1
+    Pitch: 1
+  Audio_Grope:
+  - Audio: {fileID: 8300000, guid: 4be2db22d9fb7ec4a83183afdb56fa12, type: 3}
+    Volume: 0.354
+    Pitch: 1
+  IsGrope: 1
+  CreatTuyp: Infinity
+  MaxPlayAudio: 6
+  when_full: Dont_Call
+  output: {fileID: 24300002, guid: 10c1c031ebe41874c81f7da9aacf2c0b, type: 2}
+  Loop: 0
+  Ues_List_Valume: 0
+  List_Valume_Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Infinity_Protsents: 0

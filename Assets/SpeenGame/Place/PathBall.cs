@@ -21,42 +21,50 @@ public class PathBall : Ball
         }
     }
     private float _PathTime;
-    [ShowInInspector]
     public PathBall NormalBihaind
     {
         get
         {
             PathBall Bihaind = null;
-            if (spinPath.PathBalls.First != this)
+            if (spinPath.PathBalls.Count > 1)
             {
                 Bihaind = spinPath.PathBalls.PreviousOf(this);
-                if (TMath.Distance(spinPath.CirclePath.path.GetPointAtTime(PathTime - spinPath.BallSize * 2), spinPath.CirclePath.path.GetClosestPointOnPath(Bihaind.transform.position)) > 2f) Bihaind = null;
+                if (TMath.Distance(spinPath.CirclePath.path.GetPointAtTime(PathTime + spinPath.BallSize * 2), spinPath.CirclePath.path.GetClosestPointOnPath(Bihaind.transform.position)) > .6f) Bihaind = null;
             }
             return Bihaind;
         }
     }
-    [ShowInInspector]
     public PathBall NormalForward
     {
         get
         {
             PathBall Forward = null;
-            if (spinPath.PathBalls.Last != this)
+            if (spinPath.PathBalls.Count > 1)
             {
                 Forward = spinPath.PathBalls.NextOf(this);
-                if (TMath.Distance(spinPath.CirclePath.path.GetPointAtTime(PathTime + spinPath.BallSize * 2), spinPath.CirclePath.path.GetClosestPointOnPath(Forward.transform.position)) > 2f) Forward = null;
+                if (TMath.Distance(spinPath.CirclePath.path.GetPointAtTime(PathTime - spinPath.BallSize * 2), spinPath.CirclePath.path.GetClosestPointOnPath(Forward.transform.position)) > .6f) Forward = null;
             }
             return Forward;
         }
     }
-
+    private bool isInPlace 
+    {
+        get => _isInPlace;
+        set 
+        {
+            if (value && !_isInPlace) AudioPlayer.PlayAudio("Tik");
+            _isInPlace = value;
+        }
+    }
+    private bool _isInPlace = true;
+    float SpeedForce;
     public void UpdateAction()
     {
         PathBall Bihaind = null;
         PathBall forward = null;
         if (spinPath.PathBalls.First != this) Bihaind = spinPath.PathBalls.PreviousOf(this);
         if (spinPath.PathBalls.Last != this) forward = spinPath.PathBalls.NextOf(this);
-
+        
         Move();
 
 
@@ -65,7 +73,7 @@ public class PathBall : Ball
             if (Bihaind == null) 
             {
 
-                transform.position = Vector3.MoveTowards(transform.position, spinPath.CirclePath.path.GetPointAtTime(PathTime + .02f), spinPath.Speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, spinPath.CirclePath.path.GetPointAtTime(PathTime + .02f), spinPath.Speed * TimeControll.deltaTime);
                 PathTime = spinPath.CirclePath.path.GetClosestTimeOnPath(transform.position);
                 return; 
             }
@@ -87,9 +95,10 @@ public class PathBall : Ball
                 }
             }
 
-            float Speed = spinPath.Speed * Time.deltaTime;
-            if (Vector3.Distance(NearOne.transform.position, transform.position) < spinPath.BallSize * 2) Speed *= 3;
-
+            float Speed = spinPath.Speed * TimeControll.deltaTime;
+            if (Vector3.Distance(NearOne.transform.position, transform.position) < .9f) Speed *= 5f;
+            SpeedForce += Time.deltaTime / 3;
+            Speed += SpeedForce;
             MoveForward();
 
             PathTime = spinPath.CirclePath.path.GetClosestTimeOnPath(transform.position);
@@ -98,7 +107,10 @@ public class PathBall : Ball
 
             void MoveForward()
             {
-                if (Vector3.Distance(transform.position, spinPath.CirclePath.path.GetPointAtTime(LoopBihaind.PathTime - spinPath.BallSize * 2)) > 1.4f)
+                float Dis = Vector3.Distance(transform.position, spinPath.CirclePath.path.GetPointAtTime(LoopBihaind.PathTime - spinPath.BallSize * 2));
+                isInPlace = Dis <.3f;
+                if (Dis < .3f) SpeedForce = 0f;
+                if (Dis > 2f)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, spinPath.CirclePath.path.GetPointAtTime(PathTime + .15f), Speed);
                 }
@@ -112,10 +124,11 @@ public class PathBall : Ball
     
     }
     public void PushBack() { }
-    public void Gravitation()
+  
+    private void OnDrawGizmosSelected()
     {
-        PathBall Bihaind = null;
-        if (spinPath.PathBalls.First != this) Bihaind = spinPath.PathBalls.PreviousOf(this);
-        if (Bihaind != null) PathTime -= (Time.deltaTime / 4);
+        Gizmos.DrawSphere(spinPath.CirclePath.path.GetPointAtTime(PathTime + spinPath.BallSize * 2), .1f);
+        Gizmos.DrawSphere(spinPath.CirclePath.path.GetPointAtTime(PathTime - spinPath.BallSize * 2), .1f);
     }
 }
+

@@ -98,9 +98,9 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Denger: 3.33
-    - _DengerForward: 7
-    - _DengerLight: 3
+    - _Denger: 0.39
+    - _DengerForward: 2.6
+    - _DengerLight: 3.11
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectionPitch: 148.2
@@ -144,8 +144,8 @@ Material:
     - _FrontBottomColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _FrontTopColor: {r: 0.0990566, g: 1, b: 0.0990566, a: 0}
     - _GradientColor: {r: 1, g: 0, b: 0, a: 1}
-    - _GradientColorOne: {r: 1, g: 0, b: 0.57254887, a: 1}
-    - _GradientColorTwo: {r: 1, g: 0.089898154, b: 0, a: 1}
+    - _GradientColorOne: {r: 0.08690815, g: 0.2924528, b: 0.17023455, a: 1}
+    - _GradientColorTwo: {r: 0.08957814, g: 0.17933066, b: 0.31132078, a: 1}
     - _LeftBottomColor: {r: 1, g: 0.020871002, b: 0, a: 0.7176471}
     - _LeftTopColor: {r: 0, g: 1, b: 0, a: 0}
     - _LightTint: {r: 1, g: 1, b: 1, a: 0}

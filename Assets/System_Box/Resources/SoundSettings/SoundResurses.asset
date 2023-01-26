@@ -13,22 +13,12 @@ MonoBehaviour:
   m_Name: SoundResurses
   m_EditorClassIdentifier: 
   SavedItems:
-  - {fileID: 11400000, guid: 8b7e1392ec91fac4a8adb10abbcff145, type: 2}
-  - {fileID: 11400000, guid: 74856b4e24f193946bab90fe4018166e, type: 2}
-  - {fileID: 11400000, guid: caaa101f97a2d4043bacfece910745de, type: 2}
-  - {fileID: 11400000, guid: f7a670ca5b5d1a34e9212485cec6c082, type: 2}
-  - {fileID: 11400000, guid: a551020cf127ead49ba42b9d84bebf43, type: 2}
-  - {fileID: 11400000, guid: 3d34bb0aba4c9204ba3dcb04363e8dab, type: 2}
-  - {fileID: 11400000, guid: 88d042029d2ee0746b0cf140f517e677, type: 2}
-  - {fileID: 11400000, guid: 7ed7fd1c5b813d543b66339997c0633a, type: 2}
-  - {fileID: 11400000, guid: 3c2d14e806e8cdd42a2ba44e43b01c75, type: 2}
+  - {fileID: 11400000, guid: 7cd44754fd53bca4ba50d08439a2d83d, type: 2}
+  - {fileID: 11400000, guid: 23e92882a080e084a97e76937eb5460c, type: 2}
+  - {fileID: 11400000, guid: 076b714d4907d6f4a9f0ac276fd73f76, type: 2}
+  - {fileID: 11400000, guid: 969c5332410a1eb43823aa11248f799a, type: 2}
   SavedItems_Paths:
-  - Assets/Resources/SoundIpems/bow_shot.asset
-  - Assets/Resources/SoundIpems/Crash_daimd.asset
-  - Assets/Resources/SoundIpems/Crash_Stone.asset
-  - Assets/Resources/SoundIpems/Crash_Wood.asset
-  - Assets/Resources/SoundIpems/Explosion_Big.asset
-  - Assets/Resources/SoundIpems/Monsters.asset
+  - Assets/Resources/SoundIpems/Crash.asset
+  - Assets/Resources/SoundIpems/Relode.asset
+  - Assets/Resources/SoundIpems/smash.asset
   - Assets/Resources/SoundIpems/Tik.asset
-  - Assets/Resources/SoundIpems/TikTik.asset
-  - Assets/Resources/SoundIpems/UpGread_Home.asset

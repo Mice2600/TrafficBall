@@ -8,6 +8,7 @@ using System.Linq;
 using SystemBox;
 using SystemBox.Simpls;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlaceController : MonoBehaviour
 {
@@ -21,11 +22,12 @@ public class PlaceController : MonoBehaviour
     private TList<MonoBehaviour> _StopSpeeningPbjects;
     
     
-    public System.Action<TList<Content>, Content> OnMarge;
+    public System.Action<TList<Ball>, Ball> OnMarge;
 
     [Required]
     public PathCreator CirclePath;
-
+    public int Capacity => 15;
+    public Content BiggesContent;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class PlaceController : MonoBehaviour
     {
          //PathBalls.Rotate(true).ForEach(a => a.Gravitation());
         PathBalls.ForEach(a => a.UpdateAction());
-        _PerTime += Time.deltaTime * 1.4f;
+        _PerTime += Time.deltaTime * 2f;
         if (_PerTime > 1) 
         {
             _PerTime = 0;
@@ -51,7 +53,7 @@ public class PlaceController : MonoBehaviour
         _PerTime = 0;
         if (!TrayMargeForFirst()) 
         {
-            if (PathBalls.Count >= 16) return false;
+            if (PathBalls.Count >= Capacity) return false;
             AddToList(); 
         }
 
@@ -82,11 +84,17 @@ public class PlaceController : MonoBehaviour
 
             if (conciliate.TrayMarge(new TList<Content>(NewBall.GetComponent<ContentObject>().Content, NearOne.Content), out Content NEwContent)) 
             {
-                OnMarge?.Invoke(new TList<Content>(NewBall.GetComponent<ContentObject>().Content, NearOne.Content), NEwContent);
-                GameObject da = Instantiate(ProjectSettings.ProjectSettings.Mine.GetNuberBallPrefab(NEwContent));
+                RecordScore = NEwContent;
+
+                GameObject da = Instantiate(ProjectSettings.ProjectSettings.Mine.BallPrefab);
+                da.GetComponent<Ball>().SphereRenderer.material = new Material(ProjectSettings.ProjectSettings.Mine.GetAlgaritmBallMaterial(NEwContent));
+
                 da.GetComponent<PathBall>().Content = NEwContent;
                 da.transform.position = NearOne.transform.position;
                 PathBalls[PathBalls.IndexOf(NearOne)] = da.GetComponent<PathBall>();
+
+                OnMarge?.Invoke(new TList<Ball>(NewBall.GetComponent<Ball>(), NearOne.GetComponent<Ball>()), da.GetComponent<Ball>());
+
                 Destroy(NearOne.gameObject);
                 Destroy(NewBall);
                 NewBall = da;
@@ -122,24 +130,48 @@ public class PlaceController : MonoBehaviour
             
             float Bihaindis = TMath.Distance(NewBall.transform.position, CirclePath.path.GetPointAtTime(NearOne.PathTime - .01f));
             float fordisdis = TMath.Distance(NewBall.transform.position, CirclePath.path.GetPointAtTime(NearOne.PathTime + .01f));
+
+            PathBall NewPathBall = NewBall.GetComponent<PathBall>();
+
             if (Bihaindis < fordisdis) //orqada
             {
-                if (NearOne == PathBalls.First) PathBalls.AddTo(1, NewBall.GetComponent<PathBall>());
-                else if (NearOne == PathBalls.Last) PathBalls.Add(NewBall.GetComponent<PathBall>());
-                else PathBalls.AddTo(PathBalls.IndexOf(NearOne) + 1, NewBall.GetComponent<PathBall>()); 
+                if (NearOne == PathBalls.First)  PathBalls.AddTo(1, NewPathBall);
+                else if (NearOne == PathBalls.Last) PathBalls.Add(NewPathBall);
+                else PathBalls.AddTo(PathBalls.IndexOf(NearOne) + 1, NewPathBall); 
 
             } else // oldinda
             {
-                if (NearOne == PathBalls.Last) { PathBalls.Add(NewBall.GetComponent<PathBall>()); }
-                else if(NearOne == PathBalls.First) { PathBalls.AddTo(PathBalls.IndexOf(NearOne), NewBall.GetComponent<PathBall>());  }
-                else { PathBalls.AddTo(PathBalls.IndexOf(NearOne) + 1, NewBall.GetComponent<PathBall>());  }
+                
+                if (NearOne == PathBalls.Last)  PathBalls.Add(NewPathBall); 
+                else if(NearOne == PathBalls.First) PathBalls.Add(NewPathBall); //PathBalls.AddTo(PathBalls.IndexOf(NearOne), NewBall.GetComponent<PathBall>());  
+                else { PathBalls.AddTo(PathBalls.IndexOf(NearOne) + 1, NewPathBall);  }
             }
         }
     }
     
-
+    public static int RecordScore 
+    {
+        get => PlayerPrefs.GetInt("RecordScore");
+        set 
+        {
+            if (value > PlayerPrefs.GetInt("RecordScore")) 
+            {
+                PlayerPrefs.SetInt("RecordScore", value);
+            }
+        }
+    }
     public void CheackSides() 
     {
+        BiggesContent = 0;
+        for (int i = 0; i < PathBalls.Count; i++)//look fo Freeoo
+        {
+            if (PathBalls[i].Content > BiggesContent) BiggesContent = PathBalls[i].Content;
+            if (ChakeoneResultat(i, out List<PathBall> resultats) && resultats.Count == 4) 
+            {
+                Marge(resultats);
+                return;
+            }
+        }
         for (int i = 0; i < PathBalls.Count; i++)//look fo treoo
         {
             if (ChakeoneResultat(i, out List<PathBall> resultats) && resultats.Count == 3) 
@@ -163,14 +195,21 @@ public class PlaceController : MonoBehaviour
             resultats.ForEach(a => contents.Add(a.Content));
             conciliate.TrayMarge(contents, out Content NEwContent);
 
-            OnMarge?.Invoke(contents, NEwContent);
+            RecordScore = NEwContent;
+
 
             Vector3 SenterPos = resultats[0].transform.position;
             resultats.ForEach(a => SenterPos += a.transform.position);
             SenterPos /= resultats.Count;
             resultats.ForEach(a => { PathBalls.Remove(a); Destroy(a.gameObject); });
 
-            GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.GetNuberBallPrefab(NEwContent), SenterPos, Quaternion.identity);
+            GameObject InN = Instantiate(ProjectSettings.ProjectSettings.Mine.BallPrefab);
+            InN.GetComponent<Ball>().SphereRenderer.material = new Material(ProjectSettings.ProjectSettings.Mine.GetAlgaritmBallMaterial(NEwContent));
+            InN.transform.position = SenterPos;
+            List<Ball> sda = new List<Ball>();
+            resultats.ForEach(a => { sda.Add(a);});
+            OnMarge?.Invoke(sda, InN.GetComponent<Ball>());
+
             InN.GetComponent<PathBall>().Content = NEwContent;
             TryMargeNewContent(InN);
         }

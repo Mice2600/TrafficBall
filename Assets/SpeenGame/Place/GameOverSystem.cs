@@ -79,7 +79,6 @@ public class GameOverSystem : MonoBehaviour
             spinPath.PathBalls = new LoopList<PathBall>();
             MaxScore.text = PlaceController.RecordScore + "";
             MyMaxScore.text = "Your Score : " + BigOns.Number;
-            GameAnalyticsSDK.GameAnalytics.NewProgressionEvent(GameAnalyticsSDK.GAProgressionStatus.Fail, $" Player got {BigOns.Number}");
             GameOwerVewe.Show();
 
             CurrentContentSystem CurrentContentSystem = FindObjectOfType<CurrentContentSystem>();
